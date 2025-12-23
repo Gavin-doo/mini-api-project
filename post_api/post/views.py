@@ -10,12 +10,5 @@ class PostListCreateView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
 
 class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.order_by('-id')
+    queryset = Post.objects.all()
     serializer_class = PostSerializer
-    lookup_field = 'pk'
-
-    def get_queryset(self):
-        return Post.objects.order_by('-id')
-    
-    def perform_update(self, serializer):
-        serializer.save()
